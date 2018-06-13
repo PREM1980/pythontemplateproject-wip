@@ -28,7 +28,7 @@ try {
 
         }
 
-        withEnv(['VIRTUAL_ENV=$env.WORKSPACE/venv']){
+        withEnv(["VIRTUAL_ENV=$env.WORKSPACE/venv"]){
             stage ('Check_style') {
                  sh """
                     #. venv/bin/activate
