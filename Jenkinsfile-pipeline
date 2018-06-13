@@ -36,25 +36,11 @@ try {
                     echo $PATH
                     make flake8 | tee report/flake8.log || true
                 """
-                /*
-                sh """
-                    #. venv/bin/activate
-                    export PATH=${VIRTUAL_ENV}/bin:${PATH}
-                    make pylint | tee report/pylint.log || true
-                """
-                Need static analysis collector plugin
-                */
                 step([$class: 'WarningsPublisher',
                   parserConfigurations: [[
                     parserName: 'Pep8',
                     pattern: 'report/flake8.log'
                   ]],
-                  /*
-                  [
-                    parserName: 'pylint',
-                    pattern: 'report/pylint.log'
-                  ],
-                  */
                   unstableTotalAll: '0',
                   usePreviousBuildAsReference: true
                 ])
