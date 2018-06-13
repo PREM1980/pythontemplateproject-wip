@@ -31,10 +31,12 @@ try {
         withEnv(['VIRTUAL_ENV=$env.WORKSPACE/venv']){
             stage ('Check_style') {
                  sh """
+                    #. venv/bin/activate
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     make flake8 | tee report/flake8.log || true
                 """
                 sh """
+                    #. venv/bin/activate
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     make pylint | tee report/pylint.log || true
                 """
