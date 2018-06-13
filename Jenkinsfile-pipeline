@@ -73,7 +73,7 @@ try {
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
-                        reportDir: 'coverage',
+                        reportDir: 'cover/',
                         reportFiles: 'index.html',
                         reportName: "Junit Report"
                     ])
