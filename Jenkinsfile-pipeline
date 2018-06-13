@@ -56,7 +56,7 @@ try {
                 */
             }
         }
-
+        withEnv(["VIRTUAL_ENV=$env.WORKSPACE/venv"]){
         stage('Unittest') {
 
             try{
@@ -68,9 +68,7 @@ try {
                 """
             }
             finally {
-
                 junit allowEmptyResults: true, keepLongStdio: true, testResults: 'report/nosetests.xml'
-
                 publishHTML (target: [
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
@@ -80,6 +78,7 @@ try {
                         reportName: "Junit Report"
                     ])
             }
+        }
 
             /*
             post {
