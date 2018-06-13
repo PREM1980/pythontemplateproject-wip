@@ -42,6 +42,7 @@ try {
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     make pylint | tee report/pylint.log || true
                 """
+                Need static analysis collector plugin
                 */
                 step([$class: 'WarningsPublisher',
                   parserConfigurations: [[
