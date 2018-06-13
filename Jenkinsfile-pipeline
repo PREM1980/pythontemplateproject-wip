@@ -44,7 +44,7 @@ try {
                     make pylint | tee report/pylint.log || true
                 """
                 Need static analysis collector plugin
-                */
+
                 step([$class: 'WarningsPublisher',
                   parserConfigurations: [[
                     parserName: 'Pep8',
@@ -53,6 +53,7 @@ try {
                   unstableTotalAll: '0',
                   usePreviousBuildAsReference: true
                 ])
+                */
             }
         }
 
