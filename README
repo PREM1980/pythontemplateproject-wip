@@ -1,0 +1,13 @@
+
+This is a simple python project that can be used for templating -
+
+It has the following
+
+1. folders for all the python requirements.
+2. sample setup.py file.
+3. .gitignore file.
+4. README file.
+5. .noserc - for nosetests parameters.
+6. .coveragerc - to run coverage reports.
+7. Jenkinsfile that does the following - creates a virtualenv, run - pylint unittest, systemtest, send email, build Docker container
+and push to dockerhub and then to artifactory.
