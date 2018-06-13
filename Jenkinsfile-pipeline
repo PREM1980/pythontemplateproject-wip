@@ -58,7 +58,41 @@ try {
         }
 
         stage('Unittest') {
+
+            try{
             echo 'unittest'
+            sh """
+                    #. venv/bin/activate
+                    export PATH=${VIRTUAL_ENV}/bin:${PATH}
+                    make unittest || true
+                """
+            }
+            finally {
+
+                junit allowEmptyResults: true, keepLongStdio: true, testResults: 'report/nosetests.xml'
+
+                publishHTML (target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'coverage',
+                        reportFiles: 'index.html',
+                        reportName: "Junit Report"
+                    ])
+            }
+
+            /*
+            post {
+                always {
+                    junit keepLongStdio: true, testResults: 'report/nosetests.xml'
+                    publishHTML target: [
+                        reportDir: 'cover/',
+                        reportFiles: 'index.html',
+                        reportName: 'Coverage Report - Unit Test'
+                    ]
+                }
+            }
+            */
         }
         stage('Nosetest') {
             echo 'nosetest'
