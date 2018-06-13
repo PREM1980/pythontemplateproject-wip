@@ -31,11 +31,20 @@ try {
         withEnv(["VIRTUAL_ENV=$env.WORKSPACE/venv"]){
             stage ('Check_style') {
                  sh """
+                    mkdir report
                     #. venv/bin/activate
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     echo $PATH
                     make flake8 | tee report/flake8.log || true
                 """
+                /*
+                sh """
+                    #. venv/bin/activate
+                    export PATH=${VIRTUAL_ENV}/bin:${PATH}
+                    make pylint | tee report/pylint.log || true
+                """
+                Need static analysis collector plugin
+                */
                 step([$class: 'WarningsPublisher',
                   parserConfigurations: [[
                     parserName: 'Pep8',
