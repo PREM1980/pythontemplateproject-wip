@@ -33,6 +33,7 @@ try {
                  sh """
                     #. venv/bin/activate
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
+                    echo $PATH
                     make flake8 | tee report/flake8.log || true
                 """
                 sh """
