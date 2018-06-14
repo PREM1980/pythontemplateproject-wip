@@ -43,6 +43,7 @@ try {
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     make pylint | tee report/pylint.log || true
                 """
+                */
                 Need static analysis collector plugin
 
                 step([$class: 'WarningsPublisher',
@@ -53,7 +54,7 @@ try {
                   unstableTotalAll: '0',
                   usePreviousBuildAsReference: true
                 ])
-                */
+                
             }
         }
         withEnv(["VIRTUAL_ENV=$env.WORKSPACE/venv"]){
